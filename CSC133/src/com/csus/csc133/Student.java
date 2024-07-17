@@ -14,14 +14,14 @@ public abstract class Student extends GameObject implements Imoveable {
     protected double waterIntake;
     protected double sweatingRate;
     protected int absenceTime;
-
+    
     public Student(double x, double y) {
         super(x, y);
         this.head = new Random().nextInt(360);
         this.speed = DEFAULT_SPEED;
         this.talkativeLevel = DEFAULT_TALKATIVELEVEL;
         this.timeRemain = 0;
-        this.hydration = 200.0;
+        this.hydration = 100.0;
         this.waterIntake = 0;
         this.sweatingRate = 3.0;
         this.absenceTime = 0;
@@ -42,7 +42,51 @@ public abstract class Student extends GameObject implements Imoveable {
         }
     }
 
-    // Implement abstract method from GameObject
+    public void clearWaterIntake() {
+        waterIntake = 0;
+    }
+
+    public void increaseAbsenceTime() {
+        absenceTime += 1;
+    }
+
+    public double getHydration() {
+        return hydration;
+    }
+
+    public double getWaterIntake() {
+        return waterIntake;
+    }
+
+    public double getAbsenceTime() {
+        return absenceTime;
+    }
+    
     @Override
-    public abstract void handleCollide(Student s);
+    public String toString() {
+        return getClass().getSimpleName() + ", pos (" + roundToOneDecimal(x) + "," + roundToOneDecimal(y) + 
+               "), head:" + roundToOneDecimal(head) + ", speed: " + roundToOneDecimal(speed) + 
+               ", hydration: " + roundToOneDecimal(hydration) + ", talkativeLevel: " + roundToOneDecimal(talkativeLevel) + 
+               ", timeRemain: " + roundToOneDecimal(timeRemain) + ", absenceTime: " + roundToOneDecimal(absenceTime) + 
+               ", waterIntake: " + roundToOneDecimal(waterIntake);
+    }
+
+    protected double roundToOneDecimal(double value) {
+        return Math.round(value * 10.0) / 10.0;
+    }
+
+    public void drinkWater() {
+        double hydrationBefore = hydration;
+        hydration = 100.0;
+        waterIntake += (100.0 - hydrationBefore);
+        System.out.println("Student's hydration level reset to 100 and water intake increased by " + (100.0 - hydrationBefore));
+    }
+
+    @Override
+    public void handleCollide(Student s) {
+        double maxTalkativeLevel = Math.max(this.talkativeLevel, s.talkativeLevel);
+        this.timeRemain = maxTalkativeLevel;
+        s.timeRemain = maxTalkativeLevel;
+        System.out.println("Students collided, setting timeRemain to " + maxTalkativeLevel);
+    }
 }

@@ -22,7 +22,12 @@ public class StudentConfused extends Student {
 
     @Override
     public void handleCollide(Student s) {
-        // Handle collision logic
+    	System.out.println("You collided with the confused student!");
+    }
+    
+    @Override
+    public String toString() {
+        return super.toString(); // Uses the toString implementation from the Student class
     }
 }
 

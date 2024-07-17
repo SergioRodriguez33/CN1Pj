@@ -30,6 +30,11 @@ public class StudentCar extends Student {
 
     @Override
     public void handleCollide(Student s) {
-        // Handle collision logic
+    	System.out.println("You collided with the driving student!");
+    }
+    
+    @Override
+    public String toString() {
+        return super.toString() + "Driving"; // Uses the toString implementation from the Student class
     }
 }

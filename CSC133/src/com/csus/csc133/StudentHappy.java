@@ -11,7 +11,7 @@ public class StudentHappy extends Student{
 
 	@Override
 	public void handleCollide(Student s) {
-		// TODO Auto-generated method stub
+		System.out.println("You collided with the happy student!");
 		
 	}
 	
@@ -27,5 +27,10 @@ public class StudentHappy extends Student{
 			super.move();
 		}
 	}
+	
+	@Override
+    public String toString() {
+        return super.toString() + "I'm happy!"; // Uses the toString implementation from the Student class
+    }
 
 }

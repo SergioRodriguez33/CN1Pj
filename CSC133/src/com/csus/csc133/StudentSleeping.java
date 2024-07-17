@@ -9,7 +9,7 @@ public class StudentSleeping extends Student{
 
 	@Override
 	public void handleCollide(Student s) {
-		// TODO Auto-generated method stub
+		System.out.println("You collided with the sleeping student!");
 		
 	}
 	
@@ -17,5 +17,10 @@ public class StudentSleeping extends Student{
 	public void move() {
 		//doesn't move or sweat
 	}
+	
+	@Override
+    public String toString() {
+        return super.toString() + "zzzZZZ!"; // Uses the toString implementation from the Student class
+    }
 
 }

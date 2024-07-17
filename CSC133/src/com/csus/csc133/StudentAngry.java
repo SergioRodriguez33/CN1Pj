@@ -9,8 +9,13 @@ public class StudentAngry extends Student {
 
 	@Override
 	public void handleCollide(Student s) {
-		// TODO Auto-generated method stub
+		System.out.println("You collided with the angry student!");
 		
 	}
+	
+	@Override
+    public String toString() {
+        return super.toString() + "I'm angry!"; // Uses the toString implementation from the Student class
+    }
 
 }

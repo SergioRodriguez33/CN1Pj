@@ -9,10 +9,13 @@ public class StudentFriendly extends Student {
 
 	@Override
 	public void handleCollide(Student s) {
-		// TODO Auto-generated method stub
+		System.out.println("You collided with the friendly student!");
 		
 	}
 	
-	
+	@Override
+    public String toString() {
+        return super.toString(); // Uses the toString implementation from the Student class
+    }
 
 }
