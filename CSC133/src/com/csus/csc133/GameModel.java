@@ -119,11 +119,32 @@ public class GameModel {
         // - StudentPlayer absent in too many lectures
         // - Too many waters intake or hydration reaches zero
         // Return true if game over, false otherwise
-        if (player.getAbsenceTime() > 10 || player.getHydration() <= 0 || player.getWaterIntake() > 10) {
+        if (player.getAbsenceTime() > 3) {
+        	System.out.println("Too many absences");
+            return true;
+        }
+        if (player.getHydration() <= 0) {
+        	System.out.println("Dehydrated");
+            return true;
+        }
+        if (player.getWaterIntake() > 10) {
+        	System.out.println("waterintake too high");
             return true;
         }
         return false;
     }
+    
+/* if (player.getAbsenceTime() > 3) {
+            System.out.println("Game over, absent 3 lectures");
+            return true;
+        } else if (player.getWaterIntake() > 100) {
+            System.out.println("Game over, too high water intake");
+            return true;
+        } else if (player.getHydration() <= 0) {
+            System.out.println("Game over, dehydrated");
+            return true;
+        }
+        return false;*/
     
     public StudentPlayer getPlayer() {
         for (GameObject obj : gameObjects) {
@@ -168,10 +189,9 @@ public class GameModel {
                 }
                 break;
             case 4:
-                for (GameObject obj : gameObjects) {
-                    if (obj instanceof Student && !(obj instanceof StudentPlayer)) {
-                        ((Student) obj).handleCollide(player);
-                    }
+                Student randomStudent = chooseRandomStudent();
+                if (randomStudent != null) {
+                    randomStudent.handleCollide(player);
                 }
                 break;
         }
@@ -189,5 +209,6 @@ public class GameModel {
         }
         return null;
     }
+
 }
 
