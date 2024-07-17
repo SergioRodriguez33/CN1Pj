@@ -115,10 +115,6 @@ public class GameModel {
 
     private boolean checkGameOver() {
         // Implement game over conditions here
-        // Example conditions:
-        // - StudentPlayer absent in too many lectures
-        // - Too many waters intake or hydration reaches zero
-        // Return true if game over, false otherwise
         if (player.getAbsenceTime() > 3) {
         	System.out.println("Too many absences");
             return true;
@@ -134,17 +130,6 @@ public class GameModel {
         return false;
     }
     
-/* if (player.getAbsenceTime() > 3) {
-            System.out.println("Game over, absent 3 lectures");
-            return true;
-        } else if (player.getWaterIntake() > 100) {
-            System.out.println("Game over, too high water intake");
-            return true;
-        } else if (player.getHydration() <= 0) {
-            System.out.println("Game over, dehydrated");
-            return true;
-        }
-        return false;*/
     
     public StudentPlayer getPlayer() {
         for (GameObject obj : gameObjects) {
